@@ -30,23 +30,33 @@ const bacaData = (fnCallback) => {
   let temp = []
   fs.readFile(file2,'utf8', (err, data) => {
     if (err) fnCallback(err,null);
-    let obj = JSON.parse(data);
-    temp.push(obj[0].message.split(" ")[1])
+    temp.push(jsonType2(data))
   fs.readFile(file1,'utf8', (err, data) => {
     if (err) fnCallback(err,null);
-    let obj = JSON.parse(data);
-    temp.push(obj.message.split(" ")[1])
+    temp.push(jsonType1(data))
   fs.readFile(file3,'utf8', (err, data) => {
     if (err) fnCallback(err,null);
-    let obj = JSON.parse(data);
-    temp.push(obj[0].data.message.split(" ")[1])
+    temp.push(jsonType3(data))
+    
     fnCallback(null, temp);
   });
   });
 });
 };
+const jsonType1 = (j) => {
+    let obj = JSON.parse(j);
+    return (obj.message.split(" ")[1]);
+}
 
+const jsonType2 = (j) => {
+  let obj = JSON.parse(j);
+  return (obj[0].message.split(" ")[1]);
+}
 
+const jsonType3 = (j) => {
+  let obj = JSON.parse(j);
+  return (obj[0].data.message.split(" ")[1]);
+}
 // ! JANGAN DIMODIFIKASI
 module.exports = {
   modifyFile1,
