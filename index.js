@@ -13,4 +13,5 @@ const { bacaData } = require("./fungsiCustom");
   console.log("Namun tulisan ini akan ditampilkan terlebih dahulu");
   console.log("Karena bacaData bersifat asynchronous");
   console.log("====");
+
 })();
